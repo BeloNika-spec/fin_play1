@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+  <title>Эволюция интеллекта | ИИ как новая инфраструктура</title>
+  <!-- Подключение шрифта Inter для современной типографики -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #0b0b0f;
+      color: #e5e7eb;
+      line-height: 1.6;
+      padding: 2rem 1.5rem;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .container {
+      max-width: 1000px;
+      width: 100%;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 3.5rem;
+    }
+
+    /* 1. Современный градиентный заголовок с эффектом прозрачности текста */
+    .gradient-header {
+      text-align: center;
+      margin-bottom: 0.5rem;
+    }
+
+    .gradient-header h1 {
+      font-size: clamp(2.8rem, 10vw, 5rem);
+      font-weight: 700;
+      line-height: 1.1;
+      background: linear-gradient(135deg, #a78bfa 0%, #60a5fa 45%, #34d399 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      opacity: 0.9;
+      letter-spacing: -0.02em;
+      filter: drop-shadow(0 4px 12px rgba(96, 165, 250, 0.2));
+      transition: opacity 0.4s ease;
+    }
+
+    .gradient-header h1:hover {
+      opacity: 1;
+    }
+
+    .sub-header {
+      font-size: 1.1rem;
+      font-weight: 400;
+      color: #9ca3af;
+      max-width: 650px;
+      margin: 0.5rem auto 0;
+      letter-spacing: 0.01em;
+    }
+
+    /* 2. Карточки навыков с анимацией при наведении */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.25rem;
+      margin: 0.5rem 0;
+    }
+
+    .skill-card {
+      background: rgba(255, 255, 255, 0.03);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 1.8rem;
+      padding: 1.6rem 1.2rem;
+      text-align: center;
+      transition: all 0.35s cubic-bezier(0.23, 1, 0.32, 1);
+      cursor: default;
+      box-shadow: 0 10px 25px -8px rgba(0, 0, 0, 0.4);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .skill-card:hover {
+      transform: translateY(-8px);
+      background: rgba(255, 255, 255, 0.07);
+      border-color: rgba(167, 139, 250, 0.45);
+      box-shadow: 0 20px 30px -12px rgba(96, 165, 250, 0.25);
+    }
+
+    .skill-icon {
+      font-size: 2.4rem;
+      background: linear-gradient(135deg, #c4b5fd, #818cf8);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      margin-bottom: 0.2rem;
+    }
+
+    .skill-title {
+      font-weight: 600;
+      font-size: 1.2rem;
+      letter-spacing: -0.02em;
+      color: #f1f5f9;
+    }
+
+    .skill-desc {
+      font-size: 0.9rem;
+      color: #94a3b8;
+      line-height: 1.4;
+    }
+
+    /* 3. Четкая визуальная иерархия с акцентными элементами */
+    .accent-block {
+      display: flex;
+      flex-direction: column;
+      gap: 1.8rem;
+    }
+
+    .highlight-text {
+      font-size: 1.2rem;
+      font-weight: 500;
+      background: linear-gradient(90deg, #e2e8f0, #cbd5e1);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      border-left: 4px solid #818cf8;
+      padding-left: 1.4rem;
+      margin: 0.8rem 0 0.5rem;
+      font-style: normal;
+      letter-spacing: -0.01em;
+    }
+
+    .accent-divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, #475569, transparent);
+      width: 100%;
+      margin: 0.5rem 0 1.2rem;
+    }
+
+    /* 4. Примеры кейсов в выделенных блоках */
+    .case-blocks {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+      margin: 0.8rem 0 1rem;
+    }
+
+    .case-card {
+      background: #111318;
+      border-radius: 2rem;
+      padding: 1.6rem 1.5rem;
+      border: 1px solid #1e293b;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(8px);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .case-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+      background: linear-gradient(180deg, #a78bfa, #3b82f6);
+      border-radius: 4px 0 0 4px;
+    }
+
+    .case-card:hover {
+      border-color: #4b5563;
+      background: #16191f;
+      box-shadow: 0 15px 25px -12px rgba(129, 140, 248, 0.15);
+    }
+
+    .case-title {
+      font-weight: 700;
+      font-size: 1.2rem;
+      color: #f1f5f9;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .case-text {
+      color: #9ca3af;
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+
+    .metric-badge {
+      display: inline-block;
+      background: rgba(96, 165, 250, 0.12);
+      color: #93c5fd;
+      padding: 0.2rem 0.9rem;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      margin-top: 0.8rem;
+      letter-spacing: 0.02em;
+    }
+
+    /* 5. Сетка инструментов в виде тегов */
+    .tools-section {
+      margin: 0.8rem 0 0.5rem;
+    }
+
+    .tools-title {
+      font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      font-weight: 600;
+      color: #6b7280;
+      margin-bottom: 1.3rem;
+    }
+
+    .tag-cloud {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.7rem;
+      align-items: center;
+    }
+
+    .tag {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 0.5rem 1.3rem;
+      border-radius: 40px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: #d1d5db;
+      transition: all 0.25s;
+      backdrop-filter: blur(6px);
+      cursor: default;
+      letter-spacing: -0.01em;
+    }
+
+    .tag:hover {
+      background: rgba(139, 92, 246, 0.2);
+      border-color: #a78bfa;
+      color: #e0e7ff;
+      transform: scale(1.05);
+      box-shadow: 0 0 15px rgba(139, 92, 246, 0.3);
+    }
+
+    .tag.accent {
+      background: linear-gradient(135deg, #4f46e5, #7c3aed);
+      border: 1px solid #8b5cf6;
+      color: white;
+      font-weight: 600;
+    }
+
+    /* Текстовый блок с иерархией */
+    .paragraph-text {
+      font-size: 1rem;
+      color: #cbd5e1;
+      margin: 0.6rem 0;
+      font-weight: 400;
+      line-height: 1.7;
+    }
+
+    .inline-highlight {
+      color: #a78bfa;
+      font-weight: 600;
+    }
+
+    .quote-like {
+      background: rgba(255, 255, 255, 0.02);
+      border-radius: 1.5rem;
+      padding: 1.8rem 1.8rem;
+      font-style: normal;
+      border: 1px solid #1f2937;
+      position: relative;
+      margin: 1.2rem 0;
+    }
+
+    /* Адаптивность */
+    @media (max-width: 600px) {
+      body {
+        padding: 1.2rem 0.9rem;
+      }
+      .container {
+        gap: 2.5rem;
+      }
+      .skills-grid {
+        grid-template-columns: 1fr;
+      }
+      .case-blocks {
+        grid-template-columns: 1fr;
+      }
+      .gradient-header h1 {
+        font-size: 2.4rem;
+      }
+    }
+
+    footer {
+      text-align: center;
+      font-size: 0.8rem;
+      color: #4b5563;
+      margin-top: 1.2rem;
+      border-top: 1px solid #1f2937;
+      padding-top: 2rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    
+    <!-- Заголовок с градиентом и прозрачностью -->
+    <div class="gradient-header">
+      <h1>Естественный → Искусственный</h1>
+      <div class="sub-header">Интеллект, упакованный в цифровую форму</div>
+    </div>
+
+    <!-- Карточки навыков (отражают суть текста) -->
+    <div class="skills-grid">
+      <div class="skill-card">
+        <span class="skill-icon">🌐</span>
+        <span class="skill-title">Интернет-эра</span>
+        <span class="skill-desc">Годы на массовое принятие, цифровая инфраструктура</span>
+      </div>
+      <div class="skill-card">
+        <span class="skill-icon">⚡</span>
+        <span class="skill-title">ИИ-взрыв</span>
+        <span class="skill-desc">Массовое внедрение за месяцы, нулевой барьер</span>
+      </div>
+      <div class="skill-card">
+        <span class="skill-icon">🧠</span>
+        <span class="skill-title">Обработка решений</span>
+        <span class="skill-desc">Не просто доступ, а анализ и формулировка</span>
+      </div>
+      <div class="skill-card">
+        <span class="skill-icon">🔮</span>
+        <span class="skill-title">Эффект магии</span>
+        <span class="skill-desc">Симуляция осмысленной системы</span>
+      </div>
+    </div>
+
+    <!-- Визуальная иерархия: акцентный элемент + текст -->
+    <div class="accent-block">
+      <div class="highlight-text">
+        «Если интернет стал массовым за годы, то ИИ стал массовым за месяцы»
+      </div>
+      <div class="accent-divider"></div>
+      <p class="paragraph-text">
+        <span class="inline-highlight">Естественный интеллект</span> сделал человека успешным видом. Теперь он упакован в компактную форму — 
+        искусственный интеллект, который распространяется по миру мгновенно. Интернет дал доступ к информации и построил цифровую среду, 
+        но ИИ вошел в нашу жизнь значительно быстрее, используя уже готовую инфраструктуру: смартфоны, облака, браузеры и привычку к приложениям.
+      </p>
+    </div>
+
+    <!-- Кейсы в выделенных блоках (визуализация идей) -->
+    <div class="case-blocks">
+      <div class="case-card">
+        <div class="case-title">📡 Интернет-инфраструктура</div>
+        <div class="case-text">
+          Цифровая основа: ноутбуки, банковские карты, облачные сервисы. Барьер входа был высок, распространение заняло годы.
+        </div>
+        <span class="metric-badge">⏳ Массовость: годы</span>
+      </div>
+      <div class="case-card">
+        <div class="case-title">🤖 ИИ поверх инфраструктуры</div>
+        <div class="case-text">
+          Открыл браузер, написал вопрос, получил ответ. Почти нулевой порог входа. Самый быстрый пример внедрения технологии.
+        </div>
+        <span class="metric-badge">⚡ Массовость: месяцы</span>
+      </div>
+      <div class="case-card">
+        <div class="case-title">🔌 Электричество 2.0</div>
+        <div class="case-text">
+          ИИ становится базовой инфраструктурой человека, как когда-то электричество. Ограничен только фантазией и насмотренностью.
+        </div>
+        <span class="metric-badge">✨ Бесконечный потенциал</span>
+      </div>
+    </div>
+
+    <!-- Дополнительная иерархия: цитатный блок об отличиях ИИ -->
+    <div class="quote-like">
+      <p style="font-weight: 500; color: #e2e8f0; margin-bottom: 0.5rem; font-size: 1.1rem;">
+        🧩 ИИ не просто даёт доступ к информации
+      </p>
+      <p style="color: #a5b4cb;">
+        Он помогает её <span class="inline-highlight">обрабатывать, анализировать, формулировать</span> и превращать в решения. 
+        Пока ИИ не чувствует боли, он лишь симулирует осмысленную систему — и это ощущается как магия.
+      </p>
+    </div>
+
+    <!-- Сетка инструментов в виде тегов -->
+    <div class="tools-section">
+      <div class="tools-title">🔧 Инструменты и контекст эпохи</div>
+      <div class="tag-cloud">
+        <span class="tag">Смартфоны</span>
+        <span class="tag">Ноутбуки</span>
+        <span class="tag">Браузеры</span>
+        <span class="tag">Интернет</span>
+        <span class="tag accent">Искусственный интеллект</span>
+        <span class="tag">Облачные сервисы</span>
+        <span class="tag">Банковские карты</span>
+        <span class="tag">Приложения</span>
+        <span class="tag">Цифровая привычка</span>
+        <span class="tag">Мгновенный доступ</span>
+        <span class="tag">Анализ данных</span>
+      </div>
+    </div>
+    
+    <footer>
+      Дизайн: эволюция от естественного интеллекта к искусственному • 2026
+    </footer>
+  </div>
+</body>
+</html>
